@@ -10,7 +10,9 @@
     var pct = document.getElementById('loaderPct');
     var cv = document.getElementById('loaderCanvas');
     if (!el) return;
-    function done() { el.classList.add('is-done'); setTimeout(function () { el.remove(); }, 800); }
+    var finished = false;
+    function done() { if (finished) return; finished = true; el.classList.add('is-done'); setTimeout(function () { el.remove(); }, 800); }
+    setTimeout(done, 2600); // safety: never trap the page if animation frames are throttled
     if (reduce) { if (pct) pct.textContent = '100'; setTimeout(done, 300); return; }
 
     var ctx = cv.getContext('2d'), W, H, pts = [];
