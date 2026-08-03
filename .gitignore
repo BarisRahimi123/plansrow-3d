@@ -1,0 +1,7 @@
+.claude/
+.gstack/
+*.docx
+.DS_Store
+Thumbs.db
+
+*.tmp.*

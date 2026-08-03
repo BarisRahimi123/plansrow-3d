@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plansrow — 3D Laser Scanning, Scan-to-BIM & Reality Capture | California</title>
+<meta name="description" content="Plansrow turns physical reality into intelligent data. 3D laser scanning, field-verified as-built drawings, BIM modeling, MEP documentation, GIS mapping and drafting support for AEC teams. 15+ years, 3M+ sq ft scanned." />
+<meta name="theme-color" content="#0E0D0C" />
+<meta property="og:title" content="Plansrow — Reality Capture & Scan-to-BIM" />
+<meta property="og:description" content="We turn buildings into data. 3D laser scanning, as-built drawings and BIM modeling across California and 7 U.S. hubs." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=8" />
+</head>
+<body data-theme="dark">
+
+<!-- ░░ LOADER ░░ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <canvas class="loader__canvas" id="loaderCanvas"></canvas>
+  <div class="loader__readout">
+    <span class="loader__label">INITIALIZING SCAN</span>
+    <span class="loader__pct mono" id="loaderPct">000</span>
+  </div>
+</div>
+
+<!-- ░░ CUSTOM CURSOR ░░ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__reticle"></div>
+  <div class="cursor__coords mono" id="cursorCoords">X 000.0 · Y 000.0 · Z 0.00</div>
+</div>
+
+<!-- ░░ SKIP LINK ░░ -->
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ░░ HEADER / NAV ░░ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="logo" aria-label="Plansrow home">
+      <span class="logo__mark">P</span>
+      <span class="logo__word">Plans<span class="logo__row">row</span></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <div class="nav__item nav__item--has-menu">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Services <span class="nav__caret">+</span></button>
+        <div class="nav__mega" role="menu">
+          <a role="menuitem" href="#services"><span class="mono">01</span> 3D Laser Scanning</a>
+          <a role="menuitem" href="#services"><span class="mono">02</span> As-Built Drawings</a>
+          <a role="menuitem" href="#services"><span class="mono">03</span> BIM Modeling</a>
+          <a role="menuitem" href="#services"><span class="mono">04</span> MEP As-Built</a>
+          <a role="menuitem" href="#services"><span class="mono">05</span> GIS &amp; Mapping</a>
+          <a role="menuitem" href="#services"><span class="mono">06</span> Drafting Support</a>
+          <a role="menuitem" href="#services"><span class="mono">07</span> Virtual Tours &amp; 360°</a>
+          <a role="menuitem" href="#services"><span class="mono">08</span> AI &amp; Automation Data</a>
+        </div>
+      </div>
+      <a class="nav__link" href="#serve">Industries</a>
+      <a class="nav__link" href="#projects">Projects</a>
+      <a class="nav__link" href="#about">About</a>
+      <a class="nav__link" href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost mono" href="tel:+18778122117"><span class="btn__dot"></span>+1 (877) 812-2117</a>
+      <a class="btn btn--solid" href="#contact">Instant Quote</a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ░░ 1 · HERO — pinned, scroll-driven layered building reveal ░░ -->
+<section class="hero" id="hero">
+  <div class="hero__sticky">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <!-- STAGE OVERLAYS (JS toggles .is-active by scroll progress) -->
+    <div class="hero__stages">
+      <div class="stage stage--intro is-active" data-stage="intro">
+        <div class="hero__eyebrow mono">
+          <span class="pulse"></span> REALITY CAPTURE · SCAN-TO-BIM · CALIFORNIA &amp; 7 U.S. HUBS
+        </div>
+        <h1 class="hero__title">We turn physical<br />reality into <em>intelligent data.</em></h1>
+        <p class="hero__sub">Advanced 3D laser scanning, field-verified as-builts, and data-rich BIM — delivered with the speed and precision your project team depends on.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid btn--lg" href="#contact">Instant Quote →</a>
+          <a class="btn btn--line btn--lg" href="#contact">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="stage stage--layer" data-stage="mep">
+        <span class="stage__no mono">01 / LAYER</span>
+        <h2 class="stage__title">MEP Systems</h2>
+        <p class="stage__body">The architectural skin peels back to the systems that run the building — ducts, chilled &amp; hot water and electrical, modeled with verified routing and sizing.</p>
+      </div>
+
+      <div class="stage stage--layer" data-stage="structure">
+        <span class="stage__no mono">02 / LAYER</span>
+        <h2 class="stage__title">Structure</h2>
+        <p class="stage__body">The structural skeleton — columns, beams, slabs and spread footings — field-verified to the millimeter, top to bottom.</p>
+      </div>
+
+      <div class="stage stage--layer" data-stage="data">
+        <span class="stage__no mono">03 / DATA</span>
+        <h2 class="stage__title">Embedded<br />intelligence</h2>
+        <p class="stage__body">Every component carries queryable data — make, model, serial, capacity and dimensions. Not just geometry: a true digital twin.</p>
+      </div>
+
+      <div class="stage stage--outro" data-stage="outro">
+        <span class="stage__no mono">COMPLETE</span>
+        <h2 class="stage__title">One scan.<br />A complete digital twin.</h2>
+        <div class="hero__actions"><a class="btn btn--solid btn--lg" href="#contact">Start Your Project →</a></div>
+      </div>
+    </div>
+
+    <!-- 3D-anchored data callouts (fade per layer) -->
+    <div class="hero__annos" aria-hidden="true">
+      <span class="anno" data-for="mep" style="--ax:60%;--ay:30%">SUPPLY DUCT · 24×12 IN</span>
+      <span class="anno" data-for="mep" style="--ax:44%;--ay:50%">CHW Ø6&quot; · 44 °F</span>
+      <span class="anno" data-for="mep" style="--ax:64%;--ay:62%">HHW Ø4&quot; · 180 °F</span>
+      <span class="anno" data-for="structure" style="--ax:62%;--ay:32%">W14×90 COLUMN · GRID C-4</span>
+      <span class="anno" data-for="structure" style="--ax:46%;--ay:54%">SLAB Δ ±3 mm</span>
+      <span class="anno" data-for="structure" style="--ax:52%;--ay:76%">SPREAD FOOTING F-2 · 8′×8′×24″</span>
+    </div>
+
+    <!-- METADATA cards (rich BIM callouts — DATA stage) -->
+    <div class="hero__cards" aria-hidden="true">
+      <article class="datacard" data-for="data" style="--cx:58%;--cy:20%">
+        <header class="datacard__head"><span class="datacard__tag mono">AHU-1</span><span class="datacard__type mono">ROOFTOP AIR HANDLING UNIT</span></header>
+        <dl class="datacard__rows">
+          <div><dt class="mono">Cooling</dt><dd class="mono">40 TONS</dd></div>
+          <div><dt class="mono">Airflow</dt><dd class="mono">16,000 CFM</dd></div>
+          <div><dt class="mono">Power</dt><dd class="mono">480V / 3Φ / 60Hz</dd></div>
+          <div><dt class="mono">Model</dt><dd class="mono">48TC · S/N 8841-22</dd></div>
+        </dl>
+      </article>
+      <article class="datacard" data-for="data" style="--cx:60%;--cy:56%">
+        <header class="datacard__head"><span class="datacard__tag mono">B-1</span><span class="datacard__type mono">CONDENSING HOT-WATER BOILER</span></header>
+        <dl class="datacard__rows">
+          <div><dt class="mono">Output</dt><dd class="mono">2,000 MBH</dd></div>
+          <div><dt class="mono">Efficiency</dt><dd class="mono">95% AFUE</dd></div>
+          <div><dt class="mono">HHW Supply</dt><dd class="mono">Ø4&quot; · 180 °F</dd></div>
+          <div><dt class="mono">CHW Supply</dt><dd class="mono">Ø6&quot; · 44 °F</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <!-- HUD -->
+    <div class="hero__hud" aria-hidden="true">
+      <div class="hero__hud-row"><span class="mono">SCAN_MODE</span><span class="mono accent">LIDAR · 360°</span></div>
+      <div class="hero__hud-row"><span class="mono">POINTS</span><span class="mono" id="hudPoints">0</span></div>
+      <div class="hero__hud-row"><span class="mono">LAYER</span><span class="mono" id="hudModel">POINT_CLOUD</span></div>
+    </div>
+
+    <!-- layer progress rail -->
+    <div class="hero__rail" aria-hidden="true">
+      <span class="rail__tick" data-stage="intro"><i></i>ARCHITECTURE</span>
+      <span class="rail__tick" data-stage="mep"><i></i>MEP</span>
+      <span class="rail__tick" data-stage="structure"><i></i>STRUCTURE</span>
+      <span class="rail__tick" data-stage="data"><i></i>METADATA</span>
+      <span class="rail__tick" data-stage="outro"><i></i>DIGITAL TWIN</span>
+    </div>
+
+    <div class="hero__scroll mono" aria-hidden="true">SCROLL TO EXPLORE ↓</div>
+  </div>
+</section>
+
+<!-- ░░ 2 · STATS ░░ -->
+<section class="stats" aria-label="Company at a glance">
+  <div class="stats__inner">
+    <div class="stat reveal">
+      <div class="stat__num mono" data-count="15" data-suffix="+">0</div>
+      <div class="stat__label">Years of experience</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat__num mono" data-count="3" data-suffix="M+">0</div>
+      <div class="stat__label">Sq. ft. laser-scanned</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat__num mono" data-count="40" data-suffix="+">0</div>
+      <div class="stat__label">Happy clients</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat__num mono" data-count="30" data-suffix="+">0</div>
+      <div class="stat__label">Dedicated team members</div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ 3 · SERVICES ░░ -->
+<section class="services" id="services">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ 01 — CAPABILITIES</span>
+    <h2 class="section-title">From point cloud to construction-ready intelligence.</h2>
+    <p class="section-lead">A complete suite of reality-capture, documentation and production services — so your team gets accurate field data, high-precision models, and extra hands to meet deadlines.</p>
+  </div>
+  <div class="cards" id="cards">
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">01</span>
+      <h3 class="card__title">3D Laser Scanning</h3>
+      <p class="card__body">LiDAR capture of exact architectural, structural and MEP conditions — high-density point clouds delivered as Revit, AutoCAD or IFC. ±3mm accuracy, every time.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">02</span>
+      <h3 class="card__title">As-Built Drawings</h3>
+      <p class="card__body">Most firms redraw what they see. We don't. Every drawing is field-verified and accuracy-checked — floor plans, elevations, RCPs, and sections built to eliminate surprises before design begins.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">03</span>
+      <h3 class="card__title">BIM Modeling</h3>
+      <p class="card__body">Most firms treat BIM as a 3D model. We build complete building intelligence — data-rich, code-aligned, and construction-ready from design through handover and operations.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">04</span>
+      <h3 class="card__title">MEP As-Built Documentation</h3>
+      <p class="card__body">Millimeter-accurate MEP data with equipment metadata, serial numbers, and verified pipe details. Stop coordinating from guesswork — know exactly what's in the ceiling before you open it.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">05</span>
+      <h3 class="card__title">GIS &amp; Mapping</h3>
+      <p class="card__body">RTK drone and GPS surveying for land mapping, infrastructure documentation, and geospatial data collection. Fast deployment, field-ready deliverables for civil and utility teams.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">06</span>
+      <h3 class="card__title">Drafting &amp; Production Support</h3>
+      <p class="card__body">Your team at capacity? Ours isn't. Scale drafting and BIM production instantly — your standards, your software, zero onboarding friction. Deadline met.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">07</span>
+      <h3 class="card__title">Virtual Tours &amp; 360°</h3>
+      <p class="card__body">Immersive Matterport and 360° walkthroughs so clients, contractors, and owners can review a space without a site visit — ideal for remote coordination and stakeholder sign-off.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+    <article class="card tilt" tabindex="0">
+      <span class="card__no mono">08</span>
+      <h3 class="card__title">AI &amp; Digital Twin Data</h3>
+      <p class="card__body">Structured reality-capture exports formatted for Azure Digital Twins, NVIDIA Omniverse, and smart building platforms — enabling predictive maintenance and automated facility management.</p>
+      <span class="card__link">Learn more →</span>
+    </article>
+  </div>
+</section>
+
+<!-- ░░ 4 · PROCESS ░░ -->
+<section class="process" id="process">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ 02 — THE PIPELINE</span>
+    <h2 class="section-title">Reality in. Intelligence out.</h2>
+    <p class="section-lead">From your first call to a delivered, construction-ready model — a clear four-step process with no surprises.</p>
+  </div>
+  <ol class="timeline" id="timeline">
+    <li class="step reveal">
+      <span class="step__no mono">01</span>
+      <h3 class="step__title">Scoping Call</h3>
+      <p class="step__body">We understand your project goals, site conditions, and required deliverables. Custom proposal within 48 hours.</p>
+    </li>
+    <li class="step reveal">
+      <span class="step__no mono">02</span>
+      <h3 class="step__title">On-Site Capture</h3>
+      <p class="step__body">Leica LiDAR scanners, RTK drones, and manual verification — we capture every detail your team will depend on.</p>
+    </li>
+    <li class="step reveal">
+      <span class="step__no mono">03</span>
+      <h3 class="step__title">Processing &amp; Modeling</h3>
+      <p class="step__body">Point cloud registration, clash detection, and BIM or CAD production. Quality-checked before it leaves our team.</p>
+    </li>
+    <li class="step reveal">
+      <span class="step__no mono">04</span>
+      <h3 class="step__title">Delivery &amp; Coordination</h3>
+      <p class="step__body">Files in your format — Revit, AutoCAD, IFC, or PDF. Ongoing support for RFIs, coordination, and addenda.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ░░ 4b · WHY PLANSROW ░░ -->
+<section class="why" id="why">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ WHY PLANSROW</span>
+    <h2 class="section-title">We don't just show up with a scanner.</h2>
+    <p class="section-lead">Four things every AEC team needs from a scanning partner — and how we deliver them.</p>
+  </div>
+  <div class="why__grid">
+    <div class="why__item reveal">
+      <span class="why__no mono">01</span>
+      <h3 class="why__title">Immediate Mobilization</h3>
+      <p class="why__body">Ready-to-deploy team and equipment means your schedule stays intact. No waiting weeks for a crew to free up — we move when you do.</p>
+    </div>
+    <div class="why__item reveal">
+      <span class="why__no mono">02</span>
+      <h3 class="why__title">Tailored to Your Workflow</h3>
+      <p class="why__body">We coordinate directly with your consultants and contractors, aligning every deliverable to your project standards, software, and submission format.</p>
+    </div>
+    <div class="why__item reveal">
+      <span class="why__no mono">03</span>
+      <h3 class="why__title">Fewer Change Orders</h3>
+      <p class="why__body">Accurate field data up front eliminates the rework, RFIs, and budget surprises that come from designing off wrong or missing drawings.</p>
+    </div>
+    <div class="why__item reveal">
+      <span class="why__no mono">04</span>
+      <h3 class="why__title">15+ Years, AEC-Only</h3>
+      <p class="why__body">We don't do residential surveys or generic scanning. Every project we take is in the AEC space — we know the standards, the software, and the stakes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ 5 · FEATURED PROJECTS ░░ -->
+<section class="projects" id="projects">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ 03 — PROJECTS WE'RE PROUD OF</span>
+    <h2 class="section-title">Real sites. Verified data.</h2>
+  </div>
+  <div class="proj-grid">
+    <a class="proj proj--lg reveal" href="project.html">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69192e97f6d57112e828549b_Plansrow-Manchester-Mall-as-built.avif" alt="Manchester Mall structural as-built model by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">BIM · AS-BUILT · LOD 400</span>
+        <h3 class="proj__title">Manchester Mall</h3>
+        <p class="proj__desc">200,000+ sq ft scanned to LOD 400 — point cloud, Revit &amp; ArchiCAD models and structural mapping to plan 600 apartments above the existing mall.</p>
+        <span class="proj__loc mono">OMNINET CAPITAL · FRESNO, CA</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/los-banos-market-redevelopment---as-built-laser-scan-and-lod-350-revit-model" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/691f7782a708a5bb43fbb0e5_LOS-BANOS-AS-BUILT--Plansrow-1.avif" alt="Los Banos Market as-built Revit model by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">3D SCAN · BIM · RETAIL</span>
+        <h3 class="proj__title">Los Banos Market</h3>
+        <p class="proj__desc">A former 99-Cent store reborn as a full-service market — LOD 300–350 Revit model plus drone aerial mapping of the site and frontage.</p>
+        <span class="proj__loc mono">CHACON ARCHITECT · LOS BANOS, CA</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/reeds-turnpike-booster-pump-station---3d-isometric-bim" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/691f8567dd70838a0e2197f4_PLANSROW.COM-BIM-1.jpg" alt="Reeds Turnpike booster pump station 3D BIM isometric by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">BIM · MEP · ISOMETRIC</span>
+        <h3 class="proj__title">Reeds Turnpike Pump Station</h3>
+        <p class="proj__desc">LOD 300–350 mechanical BIM with detailed isometrics of pumps, valves and process piping for clear contractor coordination.</p>
+        <span class="proj__loc mono">CLIENT · WGA</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/orloff-jewelers---as-built-documentation-3d-laser-scanning" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/693c7fd52b95a426b840aacd_pOINT-CLOUDS-ORLOFF.avif" alt="Orloff Jewelers 3D laser scan point cloud by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">3D SCAN · AS-BUILT</span>
+        <h3 class="proj__title">Orloff Jewelers</h3>
+        <p class="proj__desc">High-resolution laser scan and architectural as-builts — one accurate source of truth for renovation, with no field-measure guesswork.</p>
+        <span class="proj__loc mono">AS-BUILT DOCUMENTATION</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/emmanuel-baptist-church---architectural-structural-production-support" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/693c7e88550acf215ccfc835_1.avif" alt="Emmanuel Baptist Church architectural and structural drawings by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">DRAFTING · PRODUCTION</span>
+        <h3 class="proj__title">Emmanuel Baptist Church</h3>
+        <p class="proj__desc">Architectural &amp; structural production support — floor and roof plans, elevations, sections and permit-ready construction documents.</p>
+        <span class="proj__loc mono">SWITCHBACK ENG · STOCKTON, CA</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/superior-dairy" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/691960861e45f5c5b62c480e_Sq1.avif" alt="Superior Dairy 3D laser scan and BIM model by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">3D SCAN · BIM</span>
+        <h3 class="proj__title">Superior Dairy</h3>
+        <p class="proj__desc">3D laser scanning and BIM as-built documentation capturing existing conditions for design and coordination.</p>
+        <span class="proj__loc mono">CLIENT · 4-CREEKS</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/pickleball-court" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69195e9bad7c2be839acdce5_Picke-Ball-Court-4.avif" alt="Indoor pickleball facility as-built scan by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">3D SCAN · BIM · RECREATION</span>
+        <h3 class="proj__title">Pickleball Facility</h3>
+        <p class="proj__desc">An industrial warehouse converted to an indoor pickleball facility — LOD 300 as-built with verified floor and ceiling elevations for permitting.</p>
+        <span class="proj__loc mono">CLIENT · 4-CREEKS</span>
+      </div>
+    </a>
+    <a class="proj reveal" href="https://www.plansrow.com/projects/dinuba-roundabout-rendering" target="_blank" rel="noopener">
+      <div class="proj__media">
+        <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/692d297d30ae29e1248d9a7c_Round%20about2.jpg" alt="Dinuba roundabout 3D rendering by Plansrow" loading="lazy" decoding="async" />
+      </div>
+      <div class="proj__meta">
+        <span class="proj__tag mono">BIM · CIVIL · RENDERING</span>
+        <h3 class="proj__title">Dinuba Roundabout</h3>
+        <p class="proj__desc">3D rendering and visualization of a proposed roundabout for civil design review and public presentation.</p>
+        <span class="proj__loc mono">CLIENT · 4-CREEKS · DINUBA, CA</span>
+      </div>
+    </a>
+  </div>
+  <div class="projects__more reveal"><a class="btn btn--line" href="https://www.plansrow.com/projects" target="_blank" rel="noopener">View All Projects →</a></div>
+</section>
+
+<!-- ░░ 6 · TRUSTED BY ░░ -->
+<section class="marquee-section" id="trusted">
+  <span class="section-kicker mono center reveal">/ TRUSTED BY INDUSTRY LEADERS</span>
+  <div class="marquee" aria-label="Client list">
+    <div class="marquee__track">
+      <span>KB Home</span><span>Lennar</span><span>US Navy</span><span>4-Creeks</span><span>Khove</span><span>OmniNet</span><span>La Habra</span><span>Latitude 33</span><span>Sebastian</span><span>LandDesign</span>
+      <span aria-hidden="true">KB Home</span><span aria-hidden="true">Lennar</span><span aria-hidden="true">US Navy</span><span aria-hidden="true">4-Creeks</span><span aria-hidden="true">Khove</span><span aria-hidden="true">OmniNet</span><span aria-hidden="true">La Habra</span><span aria-hidden="true">Latitude 33</span><span aria-hidden="true">Sebastian</span><span aria-hidden="true">LandDesign</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ 7 · POWERED BY ░░ -->
+<section class="powered reveal" id="powered">
+  <span class="section-kicker mono center">/ POWERED BY</span>
+  <div class="powered__row">
+    <span class="powered__name">Leica</span>
+    <span class="powered__name">Matterport</span>
+    <span class="powered__name">Autodesk</span>
+    <span class="powered__name">Google</span>
+  </div>
+</section>
+
+<!-- ░░ 8 · TESTIMONIALS ░░ -->
+<section class="testimonials" id="testimonials">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ 04 — FROM OUR COMMUNITY</span>
+  </div>
+  <div class="quotes">
+    <figure class="quote reveal">
+      <blockquote>"Extremely responsive, easy to work with, timely with deliverables, and the quality of the work was excellent."</blockquote>
+      <figcaption><strong>Jose Lemus</strong><span class="mono">PRINCIPAL · LANDDESIGN</span></figcaption>
+    </figure>
+    <figure class="quote reveal">
+      <blockquote>"Plansrow has become our go-to team when deadlines get tight. Their scans and BIM models are accurate, clean, and always delivered on time."</blockquote>
+      <figcaption><strong>Nathan Jefferson</strong><span class="mono">DIRECTOR OF SALES · 4-CREEKS</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ░░ INDUSTRIES WE SERVE ░░ -->
+<section class="industries reveal" id="serve">
+  <div class="section-head">
+    <span class="section-kicker mono">/ INDUSTRIES WE SERVE</span>
+    <h2 class="section-title">Built for the teams that build everything.</h2>
+    <p class="section-lead">From commercial renovation to power infrastructure — if your work depends on accurate field data, we're your team.</p>
+  </div>
+  <div class="ind__grid">
+    <div class="ind__item"><span class="ind__no mono">01</span><span class="ind__name">Design Builds &amp; Remodels</span></div>
+    <div class="ind__item"><span class="ind__no mono">02</span><span class="ind__name">Education</span></div>
+    <div class="ind__item"><span class="ind__no mono">03</span><span class="ind__name">Retail &amp; Restaurant</span></div>
+    <div class="ind__item"><span class="ind__no mono">04</span><span class="ind__name">Water &amp; Sewer</span></div>
+    <div class="ind__item"><span class="ind__no mono">05</span><span class="ind__name">Engineering &amp; Surveying</span></div>
+    <div class="ind__item"><span class="ind__no mono">06</span><span class="ind__name">Civil, Road &amp; Bridge</span></div>
+    <div class="ind__item"><span class="ind__no mono">07</span><span class="ind__name">Power Transmission</span></div>
+    <div class="ind__item"><span class="ind__no mono">08</span><span class="ind__name">Telecom</span></div>
+    <div class="ind__item"><span class="ind__no mono">09</span><span class="ind__name">Oil &amp; Gas</span></div>
+    <div class="ind__item"><span class="ind__no mono">10</span><span class="ind__name">Power Generation</span></div>
+    <div class="ind__item"><span class="ind__no mono">11</span><span class="ind__name">Facilities Management</span></div>
+    <div class="ind__item"><span class="ind__no mono">12</span><span class="ind__name">EV Charging Infrastructure</span></div>
+    <div class="ind__item"><span class="ind__no mono">13</span><span class="ind__name">Environmental</span></div>
+    <div class="ind__item"><span class="ind__no mono">14</span><span class="ind__name">Architects &amp; Engineers</span></div>
+  </div>
+</section>
+
+<!-- ░░ 9 · FAQ ░░ -->
+<section class="faq" id="faq">
+  <div class="section-head reveal">
+    <span class="section-kicker mono">/ 05 — FAQ</span>
+    <h2 class="section-title">Answers, before you ask.</h2>
+  </div>
+  <div class="accordion" id="accordion">
+    <div class="acc">
+      <button class="acc__q" aria-expanded="false"><span>What is as-built documentation, and why is it important?</span><span class="acc__icon">+</span></button>
+      <div class="acc__a"><p>As-built documentation provides accurate data and detailed records of a structure's current condition. This information is crucial for renovations, compliance, and effective engineering solutions, ensuring that any modifications, AI applications, or automated processes rely on precise data.</p></div>
+    </div>
+    <div class="acc">
+      <button class="acc__q" aria-expanded="false"><span>What services do you offer?</span><span class="acc__icon">+</span></button>
+      <div class="acc__a"><p>A comprehensive suite for precise data capture, intelligent documentation, and production assistance: 3D Laser Scanning, As-Built Documentation, BIM Modeling, GIS Mapping, complete Drafting &amp; Production Support, Virtual Tours &amp; Panoramic Imagery, and AI &amp; Automation Data Integration.</p></div>
+    </div>
+    <div class="acc">
+      <button class="acc__q" aria-expanded="false"><span>How experienced is your team?</span><span class="acc__icon">+</span></button>
+      <div class="acc__a"><p>Our team brings over 15 years of industry experience, delivering precision-driven data and support across 3D laser scanning, BIM modeling, GIS mapping, and production support. We've partnered with architects, civil engineers, and developers to meet complex project needs with accuracy and efficiency.</p></div>
+    </div>
+    <div class="acc">
+      <button class="acc__q" aria-expanded="false"><span>Who benefits from your service?</span><span class="acc__icon">+</span></button>
+      <div class="acc__a"><p>Architects and engineers, civil engineering firms, developers and contractors, facility managers and building owners, the broader construction industry, infrastructure development teams, and smart-engineering / AI projects.</p></div>
+    </div>
+    <div class="acc">
+      <button class="acc__q" aria-expanded="false"><span>How do I get started?</span><span class="acc__icon">+</span></button>
+      <div class="acc__a"><p>Reach out by phone, email, or our contact form to discuss your project. We'll schedule an initial consultation, gather scope and timeline, send a custom proposal, and on approval kick off the project with a clear plan — keeping you informed at every step.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ 10 · CTA ░░ -->
+<section class="cta" id="contact">
+  <div class="cta__inner reveal">
+    <span class="section-kicker mono">/ START TODAY</span>
+    <h2 class="cta__title">Stop designing from drawings that are wrong.</h2>
+    <p class="cta__lead">Inaccurate existing conditions are the #1 source of change orders and RFIs. Our field-verified scans eliminate that problem before your design begins. Get a custom quote — 48-hour response, no commitment.</p>
+    <div class="cta__actions">
+      <a class="btn btn--solid btn--lg" href="#">Get an Instant Quote →</a>
+      <a class="btn btn--line btn--lg mono" href="tel:+18778122117">+1 (877) 812-2117</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer" id="about">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <a href="#" class="logo logo--lg"><span class="logo__mark">P</span><span class="logo__word">Plans<span class="logo__row">row</span></span></a>
+      <p class="footer__tag">We turn buildings into data. Field-verified as-builts, BIM models, and reality capture — delivered with the precision your project depends on.</p>
+      <form class="news" id="news">
+        <label class="news__label mono" for="newsEmail">AEC TECHNOLOGY UPDATES — STRAIGHT TO YOUR INBOX</label>
+        <div class="news__row">
+          <input id="newsEmail" class="news__input" type="email" placeholder="your@email.com" required />
+          <button class="btn btn--solid" type="submit">Subscribe</button>
+        </div>
+        <span class="news__msg mono" id="newsMsg" aria-live="polite"></span>
+      </form>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__h mono">Navigation</h4>
+      <a href="#projects">Projects</a><a href="#serve">Industries</a><a href="#about">About Us</a><a href="#contact">Contact Us</a>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__h mono">Services</h4>
+      <a href="#services">3D Scanning</a><a href="#services">BIM Modeling</a><a href="#services">As-Built Services</a><a href="#services">Civil Eng. Production</a>
+    </div>
+  </div>
+
+  <div class="footer__hubs">
+    <h4 class="footer__h mono">7 Strategic Hubs Across the U.S.</h4>
+    <ul class="hubs">
+      <li><span class="hub__city">San Diego</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+      <li><span class="hub__city">San Francisco</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+      <li><span class="hub__city">Fresno</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Dallas</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Austin</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Baltimore</span><a class="hub__tel mono" href="tel:+15128396700">(512) 839-6700</a></li>
+      <li><span class="hub__city">Seattle</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+    </ul>
+  </div>
+
+  <div class="footer__bottom">
+    <span class="mono">© 2026 Plansrow. All rights reserved.</span>
+    <div class="footer__legal mono">
+      <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookies</a>
+    </div>
+    <div class="footer__social mono">
+      <a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X</a>
+    </div>
+  </div>
+</footer>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module" src="js/hero.js?v=6"></script>
+<script src="js/main.js?v=3"></script>
+</body>
+</html>

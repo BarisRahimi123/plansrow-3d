@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manchester Mall — 200,000 sq ft Scan-to-BIM Case Study | Plansrow</title>
+<meta name="description" content="How Plansrow delivered a complete 3D laser scan and LOD 400 as-built BIM of a 200,000+ sq ft mall for Omninet Capital — point cloud, Revit & ArchiCAD models and structural mapping to plan 600 apartments above the existing structure." />
+<meta name="theme-color" content="#0E0D0C" />
+<meta property="og:title" content="Manchester Mall — Scan-to-BIM Case Study | Plansrow" />
+<meta property="og:description" content="200,000+ sq ft scanned to LOD 400 as-built BIM for a major mixed-use redevelopment." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69192e97f6d57112e828549b_Plansrow-Manchester-Mall-as-built.avif" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=8" />
+</head>
+<body data-theme="dark">
+
+<!-- ░░ LOADER ░░ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <canvas class="loader__canvas" id="loaderCanvas"></canvas>
+  <div class="loader__readout">
+    <span class="loader__label">INITIALIZING SCAN</span>
+    <span class="loader__pct mono" id="loaderPct">000</span>
+  </div>
+</div>
+
+<!-- ░░ CUSTOM CURSOR ░░ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__reticle"></div>
+  <div class="cursor__coords mono" id="cursorCoords">X 000.0 · Y 000.0 · Z 0.00</div>
+</div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ░░ HEADER / NAV ░░ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="logo" aria-label="Plansrow home">
+      <span class="logo__mark">P</span>
+      <span class="logo__word">Plans<span class="logo__row">row</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <div class="nav__item nav__item--has-menu">
+        <button class="nav__link" aria-expanded="false" aria-haspopup="true">Services <span class="nav__caret">+</span></button>
+        <div class="nav__mega" role="menu">
+          <a role="menuitem" href="index.html#services"><span class="mono">01</span> 3D Laser Scanning</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">02</span> As-Built Drawings</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">03</span> BIM Modeling</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">04</span> MEP As-Built</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">05</span> GIS &amp; Mapping</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">06</span> Drafting Support</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">07</span> Virtual Tours &amp; 360°</a>
+          <a role="menuitem" href="index.html#services"><span class="mono">08</span> AI &amp; Automation Data</a>
+        </div>
+      </div>
+      <a class="nav__link" href="index.html#serve">Industries</a>
+      <a class="nav__link" href="index.html#projects">Projects</a>
+      <a class="nav__link" href="index.html#about">About</a>
+      <a class="nav__link" href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--ghost mono" href="tel:+18778122117"><span class="btn__dot"></span>+1 (877) 812-2117</a>
+      <a class="btn btn--solid" href="index.html#contact">Instant Quote</a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ░░ CASE STUDY HERO ░░ -->
+<article class="cs">
+  <header class="cs-hero">
+    <nav class="cs-crumb mono reveal" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> <span>/</span> <a href="index.html#projects">Projects</a> <span>/</span> <em>Manchester Mall</em>
+    </nav>
+    <span class="cs-eyebrow mono reveal"><span class="pulse"></span> BIM · AS-BUILT · LOD 400</span>
+    <h1 class="cs-title reveal">Manchester Mall</h1>
+    <p class="cs-lede reveal">A complete 3D laser scan and LOD 400 as-built BIM of a 200,000+ sq ft mall — the digital foundation for a redevelopment adding 600 apartments above the existing structure.</p>
+
+    <dl class="cs-meta reveal">
+      <div><dt class="mono">Client</dt><dd>Omninet Capital</dd></div>
+      <div><dt class="mono">Location</dt><dd>Fresno, CA</dd></div>
+      <div><dt class="mono">Services</dt><dd>3D Laser Scanning · BIM</dd></div>
+      <div><dt class="mono">Deliverable</dt><dd>LOD 400 As-Built</dd></div>
+    </dl>
+
+    <figure class="cs-hero__media reveal">
+      <img src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69192e97f6d57112e828549b_Plansrow-Manchester-Mall-as-built.avif" alt="Manchester Mall LOD 400 structural as-built model by Plansrow" decoding="async" />
+      <figcaption class="mono">FIG 01 — STRUCTURAL AS-BUILT MODEL · LOD 400</figcaption>
+    </figure>
+  </header>
+
+  <!-- ░░ SPEC BAR ░░ -->
+  <section class="cs-spec" aria-label="Project at a glance">
+    <div class="cs-spec__item reveal">
+      <div class="cs-spec__num mono"><span class="stat__num" data-count="200" data-suffix="K+">0</span></div>
+      <div class="cs-spec__label">Sq. ft. laser-scanned</div>
+    </div>
+    <div class="cs-spec__item reveal">
+      <div class="cs-spec__num mono">LOD 400</div>
+      <div class="cs-spec__label">As-built model fidelity</div>
+    </div>
+    <div class="cs-spec__item reveal">
+      <div class="cs-spec__num mono"><span class="stat__num" data-count="600" data-suffix="">0</span></div>
+      <div class="cs-spec__label">Apartments planned above</div>
+    </div>
+    <div class="cs-spec__item reveal">
+      <div class="cs-spec__num mono">Revit · ArchiCAD</div>
+      <div class="cs-spec__label">Coordinated model formats</div>
+    </div>
+  </section>
+
+  <!-- ░░ NARRATIVE ░░ -->
+  <div class="cs-body">
+    <div class="cs-prose">
+      <section class="cs-block reveal">
+        <span class="cs-block__no mono">/ 01 — THE CHALLENGE</span>
+        <h2 class="cs-block__h">No reliable record of 200,000 sq ft.</h2>
+        <p>The redevelopment team lacked accurate structural and architectural documentation for over 200,000&nbsp;sq ft of the existing mall. With plans to renovate the structure <em>and</em> build 600 new apartment units directly above it, designing and permitting against unverified conditions carried real risk — every assumption was a potential change order.</p>
+      </section>
+
+      <section class="cs-block reveal">
+        <span class="cs-block__no mono">/ 02 — OUR APPROACH</span>
+        <h2 class="cs-block__h">Capture once. Model everything.</h2>
+        <p>Plansrow delivered a complete 3D laser scan with LOD 400 as-built documentation — capturing the building to a level of detail engineers could build from. The point cloud was modeled into coordinated Revit and ArchiCAD models, supported by aerial imagery, a virtual walkthrough, and detailed structural mapping right down to <strong>beam sizes, bolt counts, and welds</strong>.</p>
+      </section>
+
+      <section class="cs-block reveal">
+        <span class="cs-block__no mono">/ 03 — THE RESULT</span>
+        <h2 class="cs-block__h">Design and permit with confidence.</h2>
+        <p>Developers and engineers gained full visibility into the existing structure — the confidence to move through design, permitting, and construction with risk and guesswork removed. One scan became the single source of truth for a complex vertical addition.</p>
+      </section>
+    </div>
+
+    <aside class="cs-aside reveal">
+      <div class="cs-deliver">
+        <h3 class="cs-aside__h mono">Deliverables</h3>
+        <ul>
+          <li>3D point cloud — interior &amp; exterior</li>
+          <li>LOD 400 Revit model</li>
+          <li>ArchiCAD model</li>
+          <li>Aerial imagery</li>
+          <li>Virtual walkthrough</li>
+          <li>Structural mapping — beams, bolts &amp; welds</li>
+        </ul>
+      </div>
+      <div class="cs-deliver">
+        <h3 class="cs-aside__h mono">Services used</h3>
+        <div class="cs-chips">
+          <a class="cs-chip" href="index.html#services">3D Laser Scanning</a>
+          <a class="cs-chip" href="index.html#services">BIM Modeling</a>
+          <a class="cs-chip" href="index.html#services">As-Built Drawings</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ░░ GALLERY ░░ -->
+  <section class="cs-gallery" aria-label="Project gallery">
+    <span class="section-kicker mono reveal">/ FROM THE MODEL</span>
+    <div class="cs-gallery__grid">
+      <figure class="cs-shot cs-shot--wide reveal">
+        <img src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/6919302200fbbbef42a7576a_manchester-2.avif" alt="Manchester Mall as-built BIM model — overall view" loading="lazy" decoding="async" />
+      </figure>
+      <figure class="cs-shot reveal">
+        <img src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69195d72704ed8e1b1e1ec97_Manchester-3.avif" alt="Manchester Mall structural detail from the BIM model" loading="lazy" decoding="async" />
+      </figure>
+      <figure class="cs-shot reveal">
+        <img src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69195d6b90ad3863d9817b6d_Manchester-4.jpg" alt="Manchester Mall point cloud and model coordination view" loading="lazy" decoding="async" />
+      </figure>
+      <figure class="cs-shot cs-shot--wide reveal">
+        <img src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/69195deee8de9e31538259ee_MC-LH-XX-XX-M3-A-0001-R01-1.avif" alt="Manchester Mall as-built drawing sheet output" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ░░ NEXT PROJECTS ░░ -->
+  <section class="cs-next" aria-label="More projects">
+    <div class="cs-next__head reveal">
+      <span class="section-kicker mono">/ NEXT PROJECT</span>
+      <a class="btn btn--line mono" href="index.html#projects">All Projects →</a>
+    </div>
+    <div class="cs-next__grid">
+      <a class="proj reveal" href="https://www.plansrow.com/projects/los-banos-market-redevelopment---as-built-laser-scan-and-lod-350-revit-model" target="_blank" rel="noopener">
+        <div class="proj__media">
+          <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/691f7782a708a5bb43fbb0e5_LOS-BANOS-AS-BUILT--Plansrow-1.avif" alt="Los Banos Market as-built Revit model by Plansrow" loading="lazy" decoding="async" />
+        </div>
+        <div class="proj__meta">
+          <span class="proj__tag mono">3D SCAN · BIM · RETAIL</span>
+          <h3 class="proj__title">Los Banos Market</h3>
+          <span class="proj__loc mono">CHACON ARCHITECT · LOS BANOS, CA</span>
+        </div>
+      </a>
+      <a class="proj reveal" href="https://www.plansrow.com/projects/reeds-turnpike-booster-pump-station---3d-isometric-bim" target="_blank" rel="noopener">
+        <div class="proj__media">
+          <img class="proj__img" src="https://cdn.prod.website-files.com/666bd530474dbd6324d8d20c/691f8567dd70838a0e2197f4_PLANSROW.COM-BIM-1.jpg" alt="Reeds Turnpike booster pump station 3D BIM isometric by Plansrow" loading="lazy" decoding="async" />
+        </div>
+        <div class="proj__meta">
+          <span class="proj__tag mono">BIM · MEP · ISOMETRIC</span>
+          <h3 class="proj__title">Reeds Turnpike Pump Station</h3>
+          <span class="proj__loc mono">CLIENT · WGA</span>
+        </div>
+      </a>
+    </div>
+  </section>
+</article>
+
+<!-- ░░ CTA ░░ -->
+<section class="cta" id="contact">
+  <div class="cta__inner reveal">
+    <span class="section-kicker mono">/ START TODAY</span>
+    <h2 class="cta__title">Have a building that needs a source of truth?</h2>
+    <p class="cta__lead">From a single storefront to a million square feet — we capture existing conditions and turn them into data your whole team can build from. Get a custom quote — 48-hour response, no commitment.</p>
+    <div class="cta__actions">
+      <a class="btn btn--solid btn--lg" href="index.html#contact">Get an Instant Quote →</a>
+      <a class="btn btn--line btn--lg mono" href="tel:+18778122117">+1 (877) 812-2117</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer" id="about">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <a href="index.html" class="logo logo--lg"><span class="logo__mark">P</span><span class="logo__word">Plans<span class="logo__row">row</span></span></a>
+      <p class="footer__tag">We turn buildings into data. Field-verified as-builts, BIM models, and reality capture — delivered with the precision your project depends on.</p>
+      <form class="news" id="news">
+        <label class="news__label mono" for="newsEmail">AEC TECHNOLOGY UPDATES — STRAIGHT TO YOUR INBOX</label>
+        <div class="news__row">
+          <input id="newsEmail" class="news__input" type="email" placeholder="your@email.com" required />
+          <button class="btn btn--solid" type="submit">Subscribe</button>
+        </div>
+        <span class="news__msg mono" id="newsMsg" aria-live="polite"></span>
+      </form>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__h mono">Navigation</h4>
+      <a href="index.html#projects">Projects</a><a href="index.html#serve">Industries</a><a href="index.html#about">About Us</a><a href="index.html#contact">Contact Us</a>
+    </div>
+    <div class="footer__col">
+      <h4 class="footer__h mono">Services</h4>
+      <a href="index.html#services">3D Scanning</a><a href="index.html#services">BIM Modeling</a><a href="index.html#services">As-Built Services</a><a href="index.html#services">Civil Eng. Production</a>
+    </div>
+  </div>
+  <div class="footer__hubs">
+    <h4 class="footer__h mono">7 Strategic Hubs Across the U.S.</h4>
+    <ul class="hubs">
+      <li><span class="hub__city">San Diego</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+      <li><span class="hub__city">San Francisco</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+      <li><span class="hub__city">Fresno</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Dallas</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Austin</span><a class="hub__tel mono" href="tel:+18778122117">(877) 812-2117</a></li>
+      <li><span class="hub__city">Baltimore</span><a class="hub__tel mono" href="tel:+15128396700">(512) 839-6700</a></li>
+      <li><span class="hub__city">Seattle</span><a class="hub__tel mono" href="tel:+18002010930">(800) 201-0930</a></li>
+    </ul>
+  </div>
+  <div class="footer__bottom">
+    <span class="mono">© 2026 Plansrow. All rights reserved.</span>
+    <div class="footer__legal mono">
+      <a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Cookies</a>
+    </div>
+    <div class="footer__social mono">
+      <a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=3"></script>
+</body>
+</html>
